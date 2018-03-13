@@ -20,4 +20,4 @@ cpfile() {
 
 cpfile 90_debian_iso /etc/grub.d root.root 755
 wget -c "$iso"
-
+update-grub
