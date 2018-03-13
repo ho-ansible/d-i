@@ -10,15 +10,5 @@ wget -N "$iso"
 git clone $repo
 cd $(basename $repo)
 
-cpfile() {
-  file="$1"
-  dest="$2/$1"
-  owner="$3"
-  perm="$4"
-  cp "$file" "$dest"
-  chown "$owner" "$dest"
-  chmod "$perm" "$dest"
-}
-
-cpfile 90_debian_iso /etc/grub.d root.root 755
+install -o root -g root -m 755 -C 90_debian_iso /etc/grub.d/
 update-grub
