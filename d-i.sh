@@ -6,6 +6,7 @@ repo=https://github.com/ho-ansible/d-i
 iso=https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.4.0-amd64-netinst.iso
 
 cd /boot
+wget -N "$iso"
 git clone $repo
 cd $(basename $repo)
 
@@ -20,5 +21,4 @@ cpfile() {
 }
 
 cpfile 90_debian_iso /etc/grub.d root.root 755
-wget -c "$iso"
 update-grub
