@@ -10,5 +10,5 @@ wget -N "$iso"
 git clone $repo
 cd $(basename $repo)
 
-install -o root -g root -m 755 -C 90_debian_iso /etc/grub.d/
+install -o root -g root -m 755 -Cd grub.d /etc/
 update-grub
