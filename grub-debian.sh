@@ -1,7 +1,7 @@
 #! /bin/sh
 ## Configure grub for auto-install of Debian from ISO
 
-repo=https://github.com/ho-ansible/deb-install
+repo=https://github.com/ho-ansible/d-i
 iso=https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.4.0-amd64-netinst.iso
 
 cd /boot

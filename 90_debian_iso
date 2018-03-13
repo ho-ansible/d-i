@@ -12,7 +12,7 @@ for iso in /boot/*.iso; do cat <<__END__
 menuentry "Debian ISO: ${iso##*/}" {
   loopback iso $iso
   linux (iso)/install.amd/vmlinuz vga=788 \
-    auto=true file=/boot/preseed.cfg DEBCONF_DEBUG=5 \
+    auto=true file=/boot/d-i/stretch/preseed.cfg DEBCONF_DEBUG=5 \
     -- quiet
   initrd (iso)/install.amd/initrd.gz
 }
