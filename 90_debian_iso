@@ -7,9 +7,11 @@
 ## Installer can pull DHCP, but installed system needs
 ## network at initramfs stage, for dropbear cryptoroot remote unlock
 
-for iso in /boot/*.iso; do cat <<__END__
+for iso in /boot/*.iso; do 
+  menu="Debian ISO: ${iso##*/}"
+  cat <<__END__
 
-menuentry "Debian ISO: ${iso##*/}" {
+menuentry "$menu" {
   loopback iso $iso
   linux (iso)/install.amd/vmlinuz vga=788 \
     auto=true file=/boot/d-i/stretch/preseed.cfg DEBCONF_DEBUG=5 \
@@ -19,4 +21,7 @@ menuentry "Debian ISO: ${iso##*/}" {
 
 __END__
 done
+
+sed "s/^\(GRUB_DEFAULT=\).*$/\1\"$menu\"/" /etc/default/grub > /tmp/grub
+cat /tmp/grub > /etc/default/grub
 
