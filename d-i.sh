@@ -10,5 +10,5 @@ wget -N "$iso"
 git clone $repo
 cd $(basename $repo)
 
-install -o root -g root -m 755 -Cd grub.d /etc/
+install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
 update-grub
