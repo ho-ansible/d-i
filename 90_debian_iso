@@ -2,10 +2,10 @@
 ## /etc/grub.d/90-debian-iso
 ## Create grub boot menu entries for each Debian netinstall ISO in /boot
 
-## TODO pull network config from current or /etc/network/interfaces
-##   and store as kernel cmdline options:
-## Installer can pull DHCP, but installed system needs
-## network at initramfs stage, for dropbear cryptoroot remote unlock
+# sets $dev, $src, and $via
+eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
+# sets $inet, $netmask, $broadcast
+eval $(ifconfig $dev | grep netmask | sed 's/\([a-z]\)\s\+/\1=/g')
 
 for iso in /boot/*.iso; do 
   menu="Debian ISO: ${iso##*/}"
@@ -14,7 +14,10 @@ for iso in /boot/*.iso; do
 menuentry "$menu" {
   loopback iso $iso
   linux (iso)/install.amd/vmlinuz vga=788 \
-    auto=true file=/boot/d-i/stretch/preseed.cfg DEBCONF_DEBUG=5 \
+    auto=true file=/boot/d-i/stretch/preseed.cfg \
+    interface=$dev netcfg/get_ipaddress=$src netcfg/get_netmask=$netmask \
+    netcfg/get_gateway=$via \
+    DEBCONF_DEBUG=5 \
     -- quiet
   initrd (iso)/install.amd/initrd.gz
 }
