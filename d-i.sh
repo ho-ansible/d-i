@@ -1,4 +1,5 @@
 #! /bin/sh
+# wget -O- https://d-i.seanho.com/d-i.sh | bash -
 ## Configure grub for auto-install of Debian from ISO
 
 repo=https://github.com/ho-ansible/d-i
