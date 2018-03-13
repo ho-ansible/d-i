@@ -7,6 +7,7 @@ eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 # sets $inet, $netmask, $broadcast
 eval $(ifconfig $dev | grep netmask | sed 's/\([a-z]\)\s\+/\1=/g')
 
+# Print a GRUB menu entry for each ISO
 for iso in /boot/*.iso; do 
   menu="Debian ISO: ${iso##*/}"
   cat <<__END__
@@ -25,6 +26,7 @@ menuentry "$menu" {
 __END__
 done
 
+# Set the last ISO as default boot entry
 sed "s/^\(GRUB_DEFAULT=\).*$/\1\"$menu\"/" /etc/default/grub > /tmp/grub
 cat /tmp/grub > /etc/default/grub
 
