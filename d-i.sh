@@ -2,8 +2,10 @@
 # wget -O- https://d-i.seanho.com/d-i.sh | bash -
 ## Configure grub for auto-install of Debian from ISO
 
-repo=https://github.com/ho-ansible/d-i
-iso=https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.4.0-amd64-netinst.iso
+repo="https://github.com/ho-ansible/d-i"
+ver="9.4.0"
+arch="amd64"
+iso="https://cdimage.debian.org/debian-cd/current/$arch/iso-cd/debian-$ver-$arch-netinst.iso"
 
 cd /boot
 wget -N "$iso"
