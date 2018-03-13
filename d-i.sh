@@ -9,7 +9,7 @@ iso="https://cdimage.debian.org/debian-cd/current/$arch/iso-cd/debian-$ver-$arch
 
 cd /boot
 wget -N "$iso"
-git clone $repo
+git clone --depth 1 $repo
 cd $(basename $repo)
 
 install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
