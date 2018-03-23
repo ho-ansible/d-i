@@ -9,8 +9,8 @@ eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 # sets $inet, $netmask, $broadcast
 eval $(ifconfig $dev | grep netmask | sed 's/\([a-z]\)\s\+/\1=/g')
 
-# Print a GRUB menu entry for each ISO
-for iso in /boot/*.iso; do 
+# Print a GRUB menu entry for each Debian ISO
+for iso in /boot/debian-*.iso; do 
   menu="Debian ISO: ${iso##*/}"
   echo "Found $menu" >&2
   cat <<__END__
