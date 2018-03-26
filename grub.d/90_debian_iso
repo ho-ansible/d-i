@@ -23,6 +23,7 @@ menuentry "$menu" {
 __END__
 
 # Set as default boot entry
-sed "s/^\(GRUB_DEFAULT=\).*$/\1\"$menu\"/" /etc/default/grub > /tmp/grub
-cat /tmp/grub > /etc/default/grub
-
+grep -q "GRUB_DEFAULT=\"$menu\"" || {
+  sed "s/^\(GRUB_DEFAULT=\).*$/\1\"$menu\"/" /etc/default/grub > /tmp/grub
+  cat /tmp/grub > /etc/default/grub
+}
