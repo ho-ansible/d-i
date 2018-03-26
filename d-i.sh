@@ -1,5 +1,4 @@
 #! /bin/sh
-# wget -O- https://d-i.seanho.com/d-i.sh | bash -
 ## Configure grub for Debian netinstall
 
 arch="amd64"
