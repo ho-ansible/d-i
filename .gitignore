@@ -1,3 +1,5 @@
 ~*
 .*.sw?
 .private/
+linux
+initrd.gz
