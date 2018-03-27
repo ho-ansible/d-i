@@ -8,15 +8,13 @@ menu="Debian netinstall"
 
 # sets $dev, $src, and $via
 eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
-# sets $inet, $netmask, $broadcast
-eval $(ifconfig $dev | grep netmask | sed 's/\([a-z]\)\s\+/\1=/g')
 
 # Print GRUB menu entry
 cat <<__END__
 menuentry "$menu" {
   linux $dir/linux vga=788 auto=true $preseed \
-    interface=$dev netcfg/get_ipaddress=$src netcfg/get_netmask=$netmask \
-    netcfg/get_gateway=$via \
+    interface=$dev netcfg/get_ipaddress=$src \
+    netcfg/get_gateway=$via hostname=$HOSTNAME \
     DEBCONF_DEBUG=5 -- quiet
   initrd $dir/initrd.gz
 }
