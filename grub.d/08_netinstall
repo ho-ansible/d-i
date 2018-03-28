@@ -4,14 +4,13 @@
 
 dir="/boot/d-i"
 preseed="url=d-i.seanho.com"
-menu="Debian netinstall"
 
 # sets $dev, $src, and $via
 eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 
 # Print GRUB menu entry
 cat <<__END__
-menuentry "$menu" {
+menuentry "Debian netinstall" {
   linux $dir/linux vga=788 auto=true $preseed \
     interface=$dev netcfg/get_ipaddress=$src \
     netcfg/get_gateway=$via hostname=$HOSTNAME \
@@ -19,9 +18,3 @@ menuentry "$menu" {
   initrd $dir/initrd.gz
 }
 __END__
-
-# Set as default boot entry
-grep -q "GRUB_DEFAULT=\"$menu\"" || {
-  sed "s/^\(GRUB_DEFAULT=\).*$/\1\"$menu\"/" /etc/default/grub > /tmp/grub
-  cat /tmp/grub > /etc/default/grub
-}
