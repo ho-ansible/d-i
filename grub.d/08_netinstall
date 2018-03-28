@@ -1,5 +1,5 @@
 #!/bin/sh
-## /etc/grub.d/90-netinstall
+## /etc/grub.d/08-netinstall
 ## Create grub boot menu entry for Debian netinstall
 
 dir="/boot/d-i"
