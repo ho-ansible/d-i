@@ -8,6 +8,7 @@ preseed="url=d-i.seanho.com"
 # sets $dev, $src, and $via
 eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 
+
 # Print GRUB menu entry
 cat <<__END__
 menuentry "Debian netinstall" {
