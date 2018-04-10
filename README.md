@@ -1,9 +1,9 @@
-Configure GRUB to reinstall Debian from ISO
+# Install Debian from existing GRUB
 
 https://github.com/ho-ansible/d-i
 
 ## Prerequisites
-+ wget, git, ifconfig (net-tools), grub
++ wget, git, grub
 
 ## Instructions
 + `wget -O- https://d-i.seanho.com/d-i.sh | bash -`
