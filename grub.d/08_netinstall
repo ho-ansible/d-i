@@ -12,7 +12,8 @@ eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 ns="8.8.8.8"
 domain=$(hostname -d)
 [ -z "$domain" ] && domain="example.com"
-host="${HOSTNAME:-debian}"
+host=$(hostname -s)
+[ -z "$host" ] && host="debian"
 
 menu="Debian netinstall"
 echo "$menu, preseed: $preseed" >&2
