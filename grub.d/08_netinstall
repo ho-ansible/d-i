@@ -21,7 +21,7 @@ echo "$menu, preseed: $preseed" >&2
 cat <<__END__
 menuentry "$menu" {
   linux $dir/linux vga=788 auto=true $preseed \
-    interface=$dev netcfg/get_ipaddress=$src \
+    netcfg/get_ipaddress=$src \
     netcfg/get_gateway=$via \
     netcfg/get_nameservers=$ns \
     hostname=$host domain=$domain \
