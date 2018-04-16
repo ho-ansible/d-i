@@ -17,7 +17,7 @@ else
 fi
 
 for file in linux initrd.gz; do
-  wget "$url/$file"
+  wget -N "$url/$file"
 done
 
 install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
