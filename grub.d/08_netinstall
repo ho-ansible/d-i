@@ -9,9 +9,12 @@ preseed="url=d-i.seanho.com"
 eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 domain=$(hostname -d)
 
+menu="Debian netinstall"
+echo "$menu: $preseed" >&2
+
 # Print GRUB menu entry
 cat <<__END__
-menuentry "Debian netinstall" {
+menuentry "$menu" {
   linux $dir/linux vga=788 auto=true $preseed \
     interface=$dev netcfg/get_ipaddress=$src \
     netcfg/get_gateway=$via \
