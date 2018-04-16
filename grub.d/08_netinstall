@@ -10,7 +10,7 @@ eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 domain=$(hostname -d)
 
 menu="Debian netinstall"
-echo "$menu: $preseed" >&2
+echo "$menu, preseed: $preseed" >&2
 
 # Print GRUB menu entry
 cat <<__END__
