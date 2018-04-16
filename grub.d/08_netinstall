@@ -6,6 +6,7 @@ dir="/boot/d-i"
 preseed="url=d-i.seanho.com"
 
 # sets $dev, $src, and $via
+# NOTE: ensure interface name matches (e.g., eth0/ens3)
 eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
 
 ns="8.8.8.8"
