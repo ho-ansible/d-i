@@ -6,6 +6,8 @@ url="http://ftp.debian.org/debian/dists/stable/main/installer-$arch/current/imag
 
 repo="https://github.com/ho-ansible/d-i"
 
+apt-get install git wget grub2
+
 cd /boot
 repodir=$(basename $repo)
 if [ -d "$repodir/.git" ]; then
