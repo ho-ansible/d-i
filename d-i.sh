@@ -20,7 +20,7 @@ fi
 
 # Download Debian netboot kernel/ramdisk
 for file in linux initrd.gz; do
-  wget -N "$url/$file"
+  wget -qN "$url/$file"
 done
 
 # Configure GRUB2

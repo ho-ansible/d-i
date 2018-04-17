@@ -7,7 +7,7 @@
 keys_url="https://f.seanho.com/vps/authorized_keys"
 keys_tmp="/tmp/authorized_keys"
 
-wget -O $keys_tmp "$keys_url"
+wget -qO $keys_tmp "$keys_url"
 
 install -Dv -m 600 $keys_tmp /root/.ssh/
 install -Dv -m 600 $keys_tmp /etc/dropbear-initramfs/
