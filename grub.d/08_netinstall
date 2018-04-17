@@ -16,12 +16,13 @@ host=$(hostname -s)
 [ -z "$host" ] && host="debian"
 
 menu="Debian netinstall"
-echo "$menu, preseed: $preseed" >&2
+echo "$menu" >&2
 
 # Print GRUB menu entry
 cat <<__END__
 menuentry "$menu" {
   linux $dir/linux vga=788 auto=true $preseed \
+    interface=auto \
     netcfg/get_ipaddress=$src \
     netcfg/get_gateway=$via \
     netcfg/get_nameservers=$ns \
