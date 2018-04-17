@@ -6,7 +6,7 @@ url="http://ftp.debian.org/debian/dists/stable/main/installer-$arch/current/imag
 
 repo="https://github.com/ho-ansible/d-i"
 
-apt-get install git wget grub2 gettext-base
+apt-get -qq install git wget grub2 gettext-base
 
 # Clone git repo, use as working dir
 cd /boot
