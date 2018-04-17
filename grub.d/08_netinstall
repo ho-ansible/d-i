@@ -3,33 +3,12 @@
 ## Create grub boot menu entry for Debian netinstall
 
 dir="/boot/d-i"
-preseed="url=d-i.seanho.com"
 
-# sets $dev, $src, and $via
-# NOTE: ensure interface name matches (e.g., eth0/ens3)
-eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
+echo "Found Debian net-install" >&2
 
-ns="8.8.8.8"
-domain=$(hostname -d)
-[ -z "$domain" ] && domain="example.com"
-host=$(hostname -s)
-[ -z "$host" ] && host="debian"
-
-menu="Debian netinstall"
-echo "$menu" >&2
-
-# Print GRUB menu entry
 cat <<__END__
-menuentry "$menu" {
-  linux $dir/linux vga=788 auto=true $preseed \
-    interface=auto \
-    netcfg/disable_autoconfig=true \
-    netcfg/get_ipaddress=$src \
-    netcfg/get_netmask=255.255.255.0 \
-    netcfg/get_gateway=$via \
-    netcfg/get_nameservers=$ns \
-    hostname=$host domain=$domain \
-    -- quiet
-  initrd $dir/initrd.gz
+menuentry "Net-install Debian" {
+  linux $dir/linux vga=788 auto=true -- quiet
+  initrd $dir/initrd-preseed.gz
 }
 __END__
