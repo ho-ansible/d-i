@@ -7,7 +7,7 @@ dir="/boot/d-i"
 echo "Found Debian net-install" >&2
 
 cat <<__END__
-menuentry "Net-install Debian" {
+menuentry "Preseeded Debian net-install" {
   linux $dir/linux vga=788 auto=true -- quiet
   initrd $dir/initrd-preseed.gz
 }
