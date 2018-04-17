@@ -37,7 +37,6 @@ export DOMAIN=$(hostname -d)
 DOMAIN="${DOMAIN:-example.com}"
 
 # Other variables for preseed.cfg
-export AUTH_KEYS_URL="https://f.seanho.com/vps/keys"
 export DMCRYPT_PASS="3ChcPn7nTdjlvLUw6WgH"
 
 # Process preseed file (envsubst is in gettext-base)
