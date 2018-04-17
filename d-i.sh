@@ -24,23 +24,28 @@ for file in linux initrd.gz; do
 done
 
 # Read current network config
+declare -A cfg
 
 # sets $dev, $src, and $via
 eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
-export IPADDRESS="$src"
-export GATEWAY="${via:-}"
+cfg[IPADDRESS]="$src"
+cfg[GATEWAY]="${via:-}"
+cfg[NAMESERVERS]="8.8.8.8"
 
-export NAMESERVERS="8.8.8.8"
-export HOSTNAME=$(hostname -s)
-HOSTNAME="${HOSTNAME:-debian}"
-export DOMAIN=$(hostname -d)
-DOMAIN="${DOMAIN:-example.com}"
+host=$(hostname -s)
+domain=$(hostname -d)
+cfg[HOSTNAME]="${host:-debian}"
+cfg[DOMAIN]="${domain:-example.com}"
 
 # Other variables for preseed.cfg
-export DMCRYPT_PASS="3ChcPn7nTdjlvLUw6WgH"
+cfg[DMCRYPT_PASS]="3ChcPn7nTdjlvLUw6WgH"
 
 # Process preseed file (envsubst is in gettext-base)
-envsubst < d-i/stretch/preseed.cfg > preseed.cfg
+cfgvars=( ${!cfg[@]} )
+for v in "${cfgvars[@]}"; do
+  export "$v"="${cfg[$v]}"
+done
+envsubst "${cfgvars[*]/#/$}" < d-i/stretch/preseed.cfg > preseed.cfg
 
 # Insert preseed into initrd
 zcat initrd.gz > initrd-preseed
