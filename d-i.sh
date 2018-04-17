@@ -40,6 +40,10 @@ cfg[DOMAIN]="${domain:-example.com}"
 # Change this with cryptsetup after system is installed
 cfg[DMCRYPT_PASS]="3ChcPn7nTdjlvLUw6WgH"
 
+# Disable password login for root
+cfg[ROOT_PASS]="!"
+cfg[ROOT_PASS]="$6$rounds=656000$T8zQxx5QdYCFEO8k$IEsy4L6X6h85UvfxsnVPRbGrztxqhRQNWd.NX6ZcUlJBfsfp.uLld/PGYE6EHw2U/quRnpcoysThR33nv3rW5."
+
 # Process preseed file 
 cfgvars=( ${!cfg[@]} )
 for v in "${cfgvars[@]}"; do
