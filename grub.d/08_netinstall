@@ -29,7 +29,7 @@ menuentry "$menu" {
     netcfg/get_gateway=$via \
     netcfg/get_nameservers=$ns \
     hostname=$host domain=$domain \
-    DEBCONF_DEBUG=5 -- quiet
+    -- quiet
   initrd $dir/initrd.gz
 }
 __END__
