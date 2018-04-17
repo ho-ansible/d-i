@@ -6,8 +6,9 @@ url="http://ftp.debian.org/debian/dists/stable/main/installer-$arch/current/imag
 
 repo="https://github.com/ho-ansible/d-i"
 
-apt-get install git wget grub2
+apt-get install git wget grub2 gettext-base
 
+# Clone git repo, use as working dir
 cd /boot
 repodir=$(basename $repo)
 if [ -d "$repodir/.git" ]; then
@@ -18,9 +19,32 @@ else
   cd "$repodir"
 fi
 
+# Download Debian netboot kernel/ramdisk
 for file in linux initrd.gz; do
   wget -N "$url/$file"
 done
 
+# Configure GRUB2
 install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
 update-grub
+
+# Read current network config
+
+# sets $dev, $src, and $via
+eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
+export IPADDRESS="$src"
+export GATEWAY="${via:-}"
+
+export NAMESERVERS="8.8.8.8"
+export DOMAIN=$(hostname -d)
+DOMAIN="${DOMAIN:-example.com}"
+export HOSTNAME=$(hostname -s)
+HOSTNAME="${HOSTNAME:-debian}"
+
+# Other variables for preseed.cfg
+export AUTH_KEYS_URL="https://f.seanho.com/vps/authorized_keys"
+export DMCRYPT_PASS="3ChcPn7nTdjlvLUw6WgH"
+
+# Process preseed file: envsubst is in gettext-base
+envsubst < d-i/stretch/preseed.cfg > preseed.cfg
+
