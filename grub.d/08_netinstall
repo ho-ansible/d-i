@@ -3,7 +3,7 @@
 ## Create grub boot menu entry for Debian netinstall
 
 dir="/boot/d-i"
-preseed="url=d-i.seanho.com"
+preseed="file=$dir/d-i/stretch/preseed.cfg"
 
 # sets $dev, $src, and $via
 # NOTE: ensure interface name matches (e.g., eth0/ens3)
