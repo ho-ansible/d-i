@@ -36,10 +36,10 @@ export IPADDRESS="$src"
 export GATEWAY="${via:-}"
 
 export NAMESERVERS="8.8.8.8"
-export DOMAIN=$(hostname -d)
-DOMAIN="${DOMAIN:-example.com}"
 export HOSTNAME=$(hostname -s)
 HOSTNAME="${HOSTNAME:-debian}"
+export DOMAIN=$(hostname -d)
+DOMAIN="${DOMAIN:-example.com}"
 
 # Other variables for preseed.cfg
 export AUTH_KEYS_URL="https://f.seanho.com/vps/authorized_keys"
