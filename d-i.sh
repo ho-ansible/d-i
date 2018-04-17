@@ -23,10 +23,6 @@ for file in linux initrd.gz; do
   wget -qN "$url/$file"
 done
 
-# Configure GRUB2
-install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
-update-grub
-
 # Read current network config
 
 # sets $dev, $src, and $via
@@ -41,9 +37,19 @@ export DOMAIN=$(hostname -d)
 DOMAIN="${DOMAIN:-example.com}"
 
 # Other variables for preseed.cfg
-export AUTH_KEYS_URL="https://f.seanho.com/vps/authorized_keys"
+export AUTH_KEYS_URL="https://f.seanho.com/vps/keys"
 export DMCRYPT_PASS="3ChcPn7nTdjlvLUw6WgH"
 
-# Process preseed file: envsubst is in gettext-base
+# Process preseed file (envsubst is in gettext-base)
 envsubst < d-i/stretch/preseed.cfg > preseed.cfg
+
+# Insert preseed into initrd
+gunzip initrd.gz
+mv initrd initrd-preseed
+echo preseed.cfg | cpio -H newc -o -A -F initrd-preseed
+gzip initrd-preseed.gz
+
+# Configure GRUB2
+install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
+update-grub
 

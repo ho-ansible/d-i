@@ -4,13 +4,11 @@
 
 dir="/boot/d-i"
 
-menu="Debian netinstall"
-echo "$menu" >&2
+echo "Found Debian net-install" >&2
 
-# Print GRUB menu entry
 cat <<__END__
-menuentry "$menu" {
-  linux $dir/linux vga=788 auto=true file=$dir/preseed.cfg -- quiet
-  initrd $dir/initrd.gz
+menuentry "Net-install Debian" {
+  linux $dir/linux vga=788 auto=true -- quiet
+  initrd $dir/initrd-preseed.gz
 }
 __END__
