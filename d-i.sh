@@ -20,7 +20,7 @@ fi
 
 # Download Debian netboot kernel/ramdisk
 for file in linux initrd.gz; do
-  wget -qN "$url/$file"
+  wget -N "$url/$file"
 done
 
 # Read current network config
