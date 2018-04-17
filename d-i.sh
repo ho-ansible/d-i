@@ -44,10 +44,9 @@ export DMCRYPT_PASS="3ChcPn7nTdjlvLUw6WgH"
 envsubst < d-i/stretch/preseed.cfg > preseed.cfg
 
 # Insert preseed into initrd
-gunzip initrd.gz
-mv initrd initrd-preseed
+zcat initrd.gz > initrd-preseed
 echo preseed.cfg | cpio -H newc -o -A -F initrd-preseed
-gzip initrd-preseed.gz
+gzip initrd-preseed
 
 # Configure GRUB2
 install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
