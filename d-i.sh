@@ -37,10 +37,10 @@ domain=$(hostname -d)
 cfg[HOSTNAME]="${host:-debian}"
 cfg[DOMAIN]="${domain:-example.com}"
 
-# Other variables for preseed.cfg
+# Change this with cryptsetup after system is installed
 cfg[DMCRYPT_PASS]="3ChcPn7nTdjlvLUw6WgH"
 
-# Process preseed file (envsubst is in gettext-base)
+# Process preseed file 
 cfgvars=( ${!cfg[@]} )
 for v in "${cfgvars[@]}"; do
   export "$v"="${cfg[$v]}"
