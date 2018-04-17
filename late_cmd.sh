@@ -4,7 +4,7 @@
 ## See preseed/late_command
 
 ## SSH pubkeys
-keys_url="https://f.seanho.com/vps/authorized_keys"
+keys_url="https://f.seanho.com/vps/keys"
 keys_tmp="/tmp/authorized_keys"
 
 wget -qO $keys_tmp "$keys_url"

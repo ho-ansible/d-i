@@ -3,6 +3,7 @@
 https://github.com/ho-ansible/d-i
 
 ## Instructions
++ `apt-get install wget git`
 + `wget -qO- https://d-i.seanho.com/d-i.sh | bash -`
 
 ## References
