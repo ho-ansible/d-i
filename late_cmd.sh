@@ -1,9 +1,7 @@
 #! /bin/sh
 ## Extra commands after fresh Debian install,
 ## before first boot
-## Usage: in preseed config:
-## d-i preseed/late_command string \
-##   wget -O- https://d-i.seanho.com/post-setup.sh | in-target /bin/sh -
+## See preseed/late_command
 
 ## SSH pubkeys
 keys_url="https://f.seanho.com/vps/authorized_keys"
