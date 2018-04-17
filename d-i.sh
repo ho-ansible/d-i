@@ -1,12 +1,11 @@
 #! /bin/sh
 ## Configure grub for Debian netinstall
+#apt-get -qq install git wget gettext-base
 
 arch="amd64"
 url="http://ftp.debian.org/debian/dists/stable/main/installer-$arch/current/images/netboot/debian-installer/$arch"
 
 repo="https://github.com/ho-ansible/d-i"
-
-apt-get -qq install git wget gettext-base
 
 # Clone git repo, use as working dir
 cd /boot
