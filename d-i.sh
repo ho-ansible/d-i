@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 ## Configure grub for Debian netinstall
 #apt-get -qq install git wget gettext-base
 
