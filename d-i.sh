@@ -45,7 +45,7 @@ envsubst < d-i/stretch/preseed.cfg > preseed.cfg
 # Insert preseed into initrd
 zcat initrd.gz > initrd-preseed
 echo preseed.cfg | cpio -H newc -o -A -F initrd-preseed
-gzip initrd-preseed
+gzip -f initrd-preseed
 
 # Configure GRUB2
 install -Cv -o root -g root -m 755 grub.d/* /etc/grub.d/
