@@ -37,8 +37,9 @@ domain=$(hostname -d)
 cfg[HOSTNAME]="${host:-debian}"
 cfg[DOMAIN]="${domain:-example.com}"
 
-# Change this with cryptsetup after system is installed
+# Plaintext: change with cryptsetup after system is installed
 cfg[DMCRYPT_PASS]="3ChcPn7nTdjlvLUw6WgH"
+cfg[DMCRYPT_PASS]="insecure plaintext password"
 
 # Disable password login for root
 cfg[ROOT_PASS]="!"
