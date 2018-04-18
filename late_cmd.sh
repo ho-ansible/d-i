@@ -9,17 +9,14 @@ keys_tmp="/tmp/authorized_keys"
 
 wget -qO $keys_tmp "$keys_url"
 
-install -Dv -m 600 $keys_tmp /root/.ssh/
-install -Dv -m 600 $keys_tmp /etc/dropbear-initramfs/
+mkdir -vpm 700 /root/.ssh
+install -vDm 600 $keys_tmp /root/.ssh/
+install -vDm 600 $keys_tmp /etc/dropbear-initramfs/
 
-## Port and other options
-db_opts="-p 26 -s"
-db_cfg="/etc/dropbear-initramfs/config"
-opt="DROPBEAR_OPTIONS"
+## SSH server (dropbear) config
+echo "DROPBEAR_OPTIONS=\"-p 26 -s\"" >> /etc/dropbear-initramfs/config
 
-egrep -q "^[^#]*$opt=[^#]*$db_opts" $db_cfg || \
-  echo "$opt=\"\$$opt $db_opts\"" >> $db_cfg
-
-#  sed -i $db_cfg -re "s/^([^#]*$opt=\")(.*)$/\1$db_opts \2/"
+#egrep -q "^[^#]*$opt=[^#]*$db_opts" $db_cfg || \
+#  echo "$opt=\"\$$opt $db_opts\"" >> $db_cfg
 
 update-initramfs -u
