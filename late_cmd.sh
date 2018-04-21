@@ -16,7 +16,4 @@ install -vDm 600 $keys_tmp /etc/dropbear-initramfs/
 ## SSH server (dropbear) config
 echo "DROPBEAR_OPTIONS=\"-p 26 -s\"" >> /etc/dropbear-initramfs/config
 
-#egrep -q "^[^#]*$opt=[^#]*$db_opts" $db_cfg || \
-#  echo "$opt=\"\$$opt $db_opts\"" >> $db_cfg
-
 update-initramfs -u
