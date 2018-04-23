@@ -1,6 +1,5 @@
 #! /bin/bash
 ## Configure grub for Debian netinstall
-#apt-get -qq install git wget gettext-base
 
 arch="amd64"
 url="http://ftp.debian.org/debian/dists/stable/main/installer-$arch/current/images/netboot/debian-installer/$arch"

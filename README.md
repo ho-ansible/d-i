@@ -1,6 +1,6 @@
 # Install Debian from existing GRUB
 
-https://github.com/ho-ansible/d-i
+[github](https://github.com/ho-ansible/d-i)
 
 ## Instructions
 + `apt-get install wget git`
