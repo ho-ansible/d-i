@@ -6,7 +6,7 @@
 keys_url="https://f.seanho.com/vps/keys-rsa"
 keys_tmp="/tmp/authorized_keys"
 
-wget -qO "$keys_tmp" "$keys_url"
+wget -qNO "$keys_tmp" "$keys_url"
 
 mkdir -vpm 700 /root/.ssh
 install -vDm 600 "$keys_tmp" /root/.ssh/
