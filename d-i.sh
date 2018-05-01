@@ -37,8 +37,7 @@ cfg[HOSTNAME]="${host:-debian}"
 cfg[DOMAIN]="${domain:-example.com}"
 
 # Plaintext: change with cryptsetup after system is installed
-cfg[DMCRYPT_PASS]="3ChcPn7nTdjlvLUw6WgH"
-cfg[DMCRYPT_PASS]="insecure plaintext password"
+cfg[DMCRYPT_PASS]="retired axiomatic cactus swing"
 
 # Disable password login for root
 cfg[ROOT_PASS]="!"
