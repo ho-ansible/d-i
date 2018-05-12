@@ -26,7 +26,7 @@ done
 declare -A cfg
 
 # sets $dev, $src, and $via
-eval x=$(ip ro get 8.8.8.8 | sed 's/\([a-z]\)\s\+/\1=/g')
+eval x=$(ip ro get 8.8.8.8 | sed -E 's/( [a-z]+) +/\1=/g')
 cfg[IPADDRESS]="$src"
 cfg[GATEWAY]="${via:-}"
 cfg[NAMESERVERS]="8.8.8.8"
