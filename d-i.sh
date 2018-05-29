@@ -2,7 +2,9 @@
 ## Configure grub for Debian netinstall
 
 arch="amd64"
-url="http://ftp.debian.org/debian/dists/stable/main/installer-$arch/current/images/netboot/debian-installer/$arch"
+release="stable"
+
+url="http://ftp.debian.org/debian/dists/$release/main/installer-$arch/current/images/netboot/debian-installer/$arch"
 
 repo="https://github.com/ho-ansible/d-i"
 
