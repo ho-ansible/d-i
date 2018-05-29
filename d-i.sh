@@ -24,7 +24,7 @@ for file in linux initrd.gz; do
   wget -N "$url/$file"
 done
 
-# Read current network config
+# Parse current network config into associative array
 declare -A cfg
 
 # sets $dev, $src, and $via
