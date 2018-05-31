@@ -27,10 +27,16 @@ done
 # Parse current network config into associative array
 declare -A cfg
 
-# sets $dev, $src, and $via
-eval x=$(ip ro get 8.8.8.8 | sed -E 's/( [a-z]+) +/\1=/g')
+# get default interface and gateway if used
+getroute() {
+  ip ro get $1 | egrep -ow '(dev|via) [[:graph:]]+'
+}
+getroute 8.8.8.8
+getroute 2001:4860:4860::8888
+
 cfg[IPADDRESS]="$src"
 cfg[GATEWAY]="${via:-}"
+
 cfg[NAMESERVERS]="8.8.8.8"
 
 host=$(hostname -s)
@@ -41,8 +47,8 @@ cfg[DOMAIN]="${domain:-example.com}"
 # Plaintext: change with cryptsetup after system is installed
 cfg[DMCRYPT_PASS]="retired axiomatic cactus swing"
 
-# Disable password login for root
-cfg[ROOT_PASS]="!"
+# Set encrypted root password
+cfg[ROOT_PASS]="!" # disable
 cfg[ROOT_PASS]="$6$rounds=656000$T8zQxx5QdYCFEO8k$IEsy4L6X6h85UvfxsnVPRbGrztxqhRQNWd.NX6ZcUlJBfsfp.uLld/PGYE6EHw2U/quRnpcoysThR33nv3rW5."
 
 # Process preseed file 
